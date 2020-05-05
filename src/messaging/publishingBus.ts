@@ -3,8 +3,6 @@ import pino from 'pino'
 import {SmartlyEvent} from "./smartlyEvent";
 import {PublishingOptions} from "./publishingOptions";
 import {ILog} from "../logging";
-import * as Promise from "bluebird";
-import {Replies} from "amqplib/properties";
 
 export class PublishingBus {
     #initialized: boolean = false;
@@ -16,7 +14,11 @@ export class PublishingBus {
 
     readonly #createTestQueue: boolean = false;
 
-    constructor({serviceName, connectionDetails, testing, logger}: PublishingOptions) {
+    constructor({
+                    serviceName,
+                    connectionDetails,
+                    testing,
+                    logger}: PublishingOptions) {
         this.#url = connectionDetails.url;
         this.#outboundExchangeName = `${serviceName.toLowerCase()}.events.outbound`
         if (testing) {
@@ -43,6 +45,7 @@ export class PublishingBus {
     public async publish(message: SmartlyEvent) {
         await this.initialize()
         this.#channel?.publish(this.#outboundExchangeName, message.fullEventType, message.toBuffer(), {deliveryMode: true})
+        this.#logger.info({action: 'PUBLISH', event: message.fullEventType})
     }
 
     private async assertExchange(name: string) {

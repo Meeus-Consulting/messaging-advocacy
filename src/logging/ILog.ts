@@ -2,6 +2,7 @@ interface LogFn {
     (msg: string, ...args: any[]): void;
     (obj: object, msg?: string, ...args: any[]): void;
 }
+
 export interface ILog {
     /**
      * Log at `'fatal'` level the given msg. If the first argument is an object, all its properties will be included in the JSON line.

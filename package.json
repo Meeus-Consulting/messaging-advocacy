@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start": "ts-node index.ts",
-    "start:dev": "tsnd --respawn index.ts",
+    "start:dev": "tsnd --respawn index.ts | pino-pretty -c -f",
     "rabbit": "docker-compose -f docker-compose.dev.yml up -d"
   },
   "dependencies": {

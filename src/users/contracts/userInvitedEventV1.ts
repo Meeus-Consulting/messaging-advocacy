@@ -1,6 +1,6 @@
 import {SmartlyEvent} from "../../messaging/smartlyEvent";
 
-class UserInvitedEventV1 extends SmartlyEvent {
+export class UserInvitedEventV1 extends SmartlyEvent {
     constructor(
         private readonly userIdentifier: string,
         private readonly companyIdentifier: string

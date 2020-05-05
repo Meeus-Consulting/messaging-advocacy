@@ -12,11 +12,15 @@ export abstract class SmartlyEvent {
     protected abstract getMessagingSubset(): any;
 
     public toBuffer() {
-        const mergedMessage = {
-            ...{type: this.fullEventType},
-            ...this.getMessagingSubset()
-        }
+        const message = this.toString()
 
-        return Buffer.from(JSON.stringify(mergedMessage))
+        return Buffer.from(JSON.stringify(message))
+    }
+
+    public toString() {
+        return {
+        ...{type: this.fullEventType},
+        ...this.getMessagingSubset()
+        }
     }
 }
