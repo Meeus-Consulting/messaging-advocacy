@@ -17,7 +17,7 @@ export abstract class SmartlyEvent {
         return Buffer.from(JSON.stringify(message))
     }
 
-    public toString() {
+    public toString():string {
         return {
         ...{type: this.fullEventType},
         ...this.getMessagingSubset()

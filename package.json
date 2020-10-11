@@ -4,9 +4,13 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "ts-node index.ts",
+    "start:all": "pm2 start --no-daemon",
+    "stop:all": "pm2 stop all",
     "start:dev": "tsnd --respawn index.ts | pino-pretty -c -f",
-    "rabbit": "docker-compose -f docker-compose.dev.yml up -d"
+    "up": "docker-compose -f docker-compose.dev.yml up -d",
+    "down": "docker-compose -f docker-compose.dev.yml down -v",
+    "clean": "pm2 delete all",
+    "console": "open http://localhost:15672"
   },
   "dependencies": {
     "@types/amqplib": "^0.5.13",
@@ -16,9 +20,13 @@
     "global": "^4.4.0",
     "pino": "^6.2.1",
     "pino-pretty": "^4.0.0",
+    "pm2": "^4.5.0",
+    "repeat": "^1.2.0",
     "ts-node": "^8.10.1",
     "ts-node-dev": "^1.0.0-pre.44",
     "typescript": "^3.8.3",
     "uuid": "^8.0.0"
+  },
+  "devDependencies": {
   }
 }
