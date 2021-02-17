@@ -6,19 +6,18 @@
   "scripts": {
     "start:all": "pm2 start --no-daemon",
     "stop:all": "pm2 stop all",
-    "start:dev": "tsnd --respawn index.ts | pino-pretty -c -f",
-    "up": "docker-compose -f docker-compose.dev.yml up -d",
-    "down": "docker-compose -f docker-compose.dev.yml down -v",
-    "clean": "pm2 delete all",
-    "console": "open http://localhost:15672"
+    "clean": "pm2 delete all"
   },
   "dependencies": {
     "@types/amqplib": "^0.5.13",
     "@types/pino": "^6.0.0",
     "@types/uuid": "^7.0.3",
     "amqplib": "^0.5.5",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
     "global": "^4.4.0",
     "pino": "^6.2.1",
+    "pino-http": "^5.5.0",
     "pino-pretty": "^4.0.0",
     "pm2": "^4.5.0",
     "repeat": "^1.2.0",
@@ -28,5 +27,7 @@
     "uuid": "^8.0.0"
   },
   "devDependencies": {
+    "@types/express": "^4.17.11",
+    "@types/express-pino-logger": "^4.0.2"
   }
 }

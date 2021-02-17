@@ -1,3 +1,3 @@
 export const toExchangeNameFromServiceName = (serviceName: string):string => {
-    return `${serviceName}.events.outbound`
+    return `${serviceName}:event:outbound`;
 }
